@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
+const adminRoute = require('./routes/admin');
 require('dotenv').config();
 
 const app = express();
@@ -14,17 +15,20 @@ app.set('views', './src/pages');
 app.use(express.urlencoded({ extended: false }));
 app.use('/static', express.static(path.join(`${__dirname}/public`)));
 
-app.length('/', (req, res) => res.send('Home Route'));
+app.use('/', adminRoute);
 
 const port = process.env.PORT || 8080;
-
-mongoose.connect(process.env.DB_HOST, {
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useNewUrlParse: true,
-    useFindAndModify: false,
-}).then(() => {
-    app.listen(port, () => console.log(`Server and Database running on ${port}, http://localhost:${port}`));
-}).catch((err) => {
-    console.log(err);
-});
+console.log(process.env)
+mongoose
+    .connect(process.env.DB_HOST, {
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+      useFindAndModify: false,
+    })
+    .then(() => {
+        app.listen(port, () => console.log(`Server and Database running on ${port}, http://localhost:${port}`));
+    })
+    .catch((err) => {
+        console.log(err);
+    });
