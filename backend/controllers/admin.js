@@ -1,8 +1,28 @@
 
 const Account = require('../models/Account');
 
-exports.getIndex = (req, res) => {
-    res.status(200).render('index');
+exports.getIndex = async (req, res) => {
+    const account = await Account.find((data) => data);
+
+    try {
+        console.log(account);
+        res.status(200).render('index');
+    } catch (error) {
+        console.log(error);
+    }
+    
+};
+
+exports.getAccount = async (req, res) => {
+    const accountId = req.params.accountId;
+    const account = await Account.findById(accountId, (account) => account);
+
+    try {
+        console.log(account);
+        res.status(200).render('account', { account: account });
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 exports.getAddAccount = (req, res) => {
