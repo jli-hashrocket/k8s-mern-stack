@@ -7,5 +7,17 @@
     </head>
     <body>
         <h1>Account</h1>
+        <main>
+            <h1><%= account.first_name %>, <%= account.last_name%></h1>
+            <p><%= account.email %></p>
+            <div>
+                <form method="POST" action="/delete/<%= account.id %>">
+                    <div>
+                        <input type="hidden" value="<%= account.id %>">
+                        <button>Delete</button>
+                    </div>
+                </form>
+            </div>
+        </main>
     </body>
 </html>
