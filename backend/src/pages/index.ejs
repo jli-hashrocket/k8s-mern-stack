@@ -7,5 +7,10 @@
 	</head>
 	<body>
 		<h1>Home Page</h1>
+		<main>
+			<% account.forEach(data => { %>
+				<li><h1><a href="/<%= data.id %>"><%= data.last_name %>, <%= data.first_name %></a></h1></li>
+x			<% }) %>
+		</main>
 	</body>
 </html>
