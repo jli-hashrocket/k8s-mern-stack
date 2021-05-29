@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
-const adminRoute = require('./routes/admin');
+const accountRoute = require('./routes/account');
 require('dotenv').config();
 
 const app = express();
@@ -15,7 +15,7 @@ app.set('views', './src/pages');
 app.use(express.urlencoded({ extended: false }));
 app.use('/static', express.static(path.join(`${__dirname}/public`)));
 
-app.use('/', adminRoute);
+app.use('/', accountRoute);
 
 const port = process.env.PORT || 8080;
 console.log(process.env)
