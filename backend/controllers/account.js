@@ -2,75 +2,75 @@
 const Account = require('../models/Account');
 
 exports.index = async (req, res) => {
-    const accounts = await Account.find((data) => data);
-    
-    try {
-        res.status(200).render('index', { accounts: accounts });
-    } catch (error) {
-        console.log(error);
-    }
+	const accounts = await Account.find((data) => data);
+	
+	try {
+		res.status(200).render('index', { accounts: accounts });
+	} catch (error) {
+		console.log(error);
+	}
     
 };
 
 exports.getAccount = async (req, res) => {
-    const accountId = req.params._id;
-    const account = await Account.findById(accountId, (account) => account);
-    
-    try {
-        res.status(200).render('account', { account: account });
-        console.log('success');
-    } catch (error) {
-        console.log(error);
-    }
+	const accountId = req.params._id;
+	const account = await Account.findById(accountId, (account) => account);
+	
+	try {
+		res.status(200).render('account', { account: account });
+		console.log('success');
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 exports.addAccount = (req, res) => {
-    res.status(200).render('add-account');
+	res.status(200).render('add-account');
 };
 
 exports.editAccount = async (req, res) => {
-    const accountId = req.params._id;
-    const account = await Account.findById(accountId, (account) => account);
+	const accountId = req.params._id;
+	const account = await Account.findById(accountId, (account) => account);
 
-    try {
-        res.status(200).render('edit-account', {account: account});
-    } catch (error) {
-        console.log(error);
-    }
+	try {
+		res.status(200).render('edit-account', {account: account});
+	} catch (error) {
+		console.log(error);
+	}
     
 };
 
 exports.updateAccount = async (req, res) => {
-    const accountId = req.params._id
-    const account = await Account.updateOne({ _id: accountId }, req.body);
+	const accountId = req.params._id
+	const account = await Account.updateOne({ _id: accountId }, req.body);
 
-    try {
-        res.status(201).redirect('/');
-    } catch (error) {
-        console.log(error);
-    }
+	try {
+		res.status(201).redirect('/');
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 exports.createAccount = (req, res) => {
-    const { firstName, lastName, email } = req.body;
-    
-    const account = new Account({ first_name: firstName, last_name: lastName, email: email });
-    account.save();
-    res.status(201).redirect('/');
+	const { firstName, lastName, email } = req.body;
+	
+	const account = new Account({ first_name: firstName, last_name: lastName, email: email });
+	account.save();
+	res.status(201).redirect('/');
 }
 
 exports.deleteAccount = (req, res) => {
-    const accountId = req.params._id;
-    try {
-        Account.findByIdAndDelete(accountId, function(err){
-            if(err){
-                console.log(err);
-            } else {
-                console.log('Item deleted');
-                res.redirect('/');
-            }
-        });
-    } catch (error) {
-        console.log(error);
-    }
+	const accountId = req.params._id;
+	try {
+		Account.findByIdAndDelete(accountId, function(err){
+			if(err){
+				console.log(err);
+			} else {
+				console.log('Item deleted');
+				res.redirect('/');
+			}
+		});
+	} catch (error) {
+		console.log(error);
+	}
 }
