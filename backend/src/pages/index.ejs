@@ -10,8 +10,8 @@
 		<main>
 			<div><a href="/add-account">Add Account</a></div>
 			<div>
-				<% account.forEach(data => { %>
-					<li><h1><a href="/<%= data.id %>"><%= data.last_name %>, <%= data.first_name %></a></h1></li>
+				<% accounts.forEach(account => { %>
+					<li><a href="/<%= account.id %>"><%= account.last_name %>, <%= account.first_name %></a> <a href="/edit/<%= account.id %>">Edit</a></li>
 				<% }) %>
 			</div>
 		</main>
