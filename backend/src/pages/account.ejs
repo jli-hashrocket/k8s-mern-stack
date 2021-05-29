@@ -1,24 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Account</title>
-    </head>
-    <body>
-        <h1>Account</h1>
-        <div><a href="/">Back</a></div>
-        <main>
-            <h1><%= account.first_name %>, <%= account.last_name%></h1>
-            <p><%= account.email %></p>
-            <div>
-                <form method="POST" action="/delete/<%= account.id %>">
-                    <div>
-                        <input type="hidden" value="<%= account.id %>">
-                        <button>Delete</button>
-                    </div>
-                </form>
-            </div>
-        </main>
-    </body>
-</html>
+<%- include('header', { header: account.first_name + ", " + account.last_name}); -%>
+<div><a href="/">Back</a></div>
+	<p><b>Email:</b> <%= account.email %></p>
+	<div>
+		<form method="POST" action="/delete/<%= account.id %>">
+			<div>
+				<input type="hidden" value="<%= account.id %>">
+				<button>Delete</button>
+			</div>
+		</form>
+	</div>
+<%- include('footer'); -%>

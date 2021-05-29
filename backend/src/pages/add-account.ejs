@@ -1,29 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Add Account</title>
-    </head>
-    <body>
-        <h1>Add Account</h1>
+<%- include('header', { header: 'Add Account'}); -%>
 
-        <form method="post" action="/add-account">
-            <div>
-                <label>First Name</label>
-                <input type="text" name="first_name" required />
-            </div>
-            <div>
-                <label>Last Name</label>
-                <input type="text" name="last_name" required />
-            </div>
-            <div>
-                <label>Email</label>
-                <input type="text" name="email" required />
-            </div>
-            <div>
-                <button type="submit">Add Account</button>
-            </div>
-        </form>
-    </body>
-</html>
+<form method="post" action="/add-account">
+    <div>
+        <label>First Name</label>
+        <input type="text" name="first_name" required />
+    </div>
+    <div>
+        <label>Last Name</label>
+        <input type="text" name="last_name" required />
+    </div>
+    <div>
+        <label>Email</label>
+        <input type="text" name="email" required />
+    </div>
+    <div>
+        <a href="/">Cancel</a>
+        <button type="submit">Add Account</button>
+    </div>
+</form>
+<%- include('footer'); -%>
