@@ -1,11 +1,11 @@
 
 const Account = require('../models/Account');
 
-exports.getIndex = async (req, res) => {
-    const account = await Account.find((data) => data);
-
+exports.index = async (req, res) => {
+    const accounts = await Account.find((data) => data);
+    
     try {
-        res.status(200).render('index', { account: account });
+        res.status(200).render('index', { accounts: accounts });
     } catch (error) {
         console.log(error);
     }
@@ -13,30 +13,54 @@ exports.getIndex = async (req, res) => {
 };
 
 exports.getAccount = async (req, res) => {
-    const accountId = req.params.accountId;
+    const accountId = req.params._id;
     const account = await Account.findById(accountId, (account) => account);
-
+    
     try {
         res.status(200).render('account', { account: account });
+        console.log('success');
     } catch (error) {
         console.log(error);
     }
 };
 
-exports.getAddAccount = (req, res) => {
+exports.addAccount = (req, res) => {
     res.status(200).render('add-account');
 };
 
-exports.postAccount = (req, res) => {
-    const { first_name, last_name, email } = req.body;
+exports.editAccount = async (req, res) => {
+    const accountId = req.params._id;
+    const account = await Account.findById(accountId, (account) => account);
+
+    try {
+        res.status(200).render('edit-account', {account: account});
+    } catch (error) {
+        console.log(error);
+    }
     
-    const account = new Account({ first_name: first_name, last_name: last_name, email: email });
+};
+
+exports.updateAccount = async (req, res) => {
+    const accountId = req.params._id
+    const account = await Account.updateOne({ _id: accountId }, req.body);
+
+    try {
+        res.status(201).redirect('/');
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.createAccount = (req, res) => {
+    const { firstName, lastName, email } = req.body;
+    
+    const account = new Account({ first_name: firstName, last_name: lastName, email: email });
     account.save();
     res.status(201).redirect('/');
 }
 
-exports.postDelete = (req, res) => {
-    const accountId = req.params.accountId;
+exports.deleteAccount = (req, res) => {
+    const accountId = req.params._id;
     try {
         Account.findByIdAndDelete(accountId, function(err){
             if(err){
