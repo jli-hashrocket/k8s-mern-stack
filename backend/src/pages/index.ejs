@@ -2,6 +2,7 @@
 <%- include('header', { header: 'Home'}); -%>
 
 <div><a href="/add-account">Add Account</a></div>
+<br/>
 <div>
 	<% accounts.forEach(account => { %>
 		<li><a href="/<%= account.id %>"><%= account.last_name %>, <%= account.first_name %></a> <a href="/edit/<%= account.id %>">Edit</a></li>

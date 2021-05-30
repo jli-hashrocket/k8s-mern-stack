@@ -5,7 +5,7 @@ exports.index = async (req, res) => {
 	const accounts = await Account.find((data) => data);
 	
 	try {
-		res.status(200).render('index', { accounts: accounts });
+		res.json(accounts);
 	} catch (error) {
 		console.log(error);
 	}
@@ -51,10 +51,8 @@ exports.updateAccount = async (req, res) => {
 	}
 }
 
-exports.createAccount = (req, res) => {
-	const { firstName, lastName, email } = req.body;
-	
-	const account = new Account({ first_name: firstName, last_name: lastName, email: email });
+exports.createAccount = (req, res) => {	
+	const account = new Account(req.body);
 	account.save();
 	res.status(201).redirect('/');
 }
