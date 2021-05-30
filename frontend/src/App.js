@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState} from 'react';
-import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,11 +6,12 @@ import {
   Link,
   useParams
 } from "../node_modules/react-router-dom";
+import AccountList from "./components/AccountList.js";
 
 const App = () => {
   useEffect(() => {
     const getAPI = async () => {
-      const response = await fetch('http://localhost:8080/');
+      const response = await fetch('http://localhost:8080/account-list');
       const data = await response.json();
 
       try {
@@ -32,27 +32,14 @@ const App = () => {
   return (
     <Router>
       <Fragment>
-        <h1>Account Home</h1>
-        <div>
-          {loading ? (
-              <div>Loading</div>
-          ) : (
-            <div>
-              {accounts.map((account) => (
-                <div key={account._id}>
-                  <ul>
-                    <li>
-                      <Link to={`/${account._id}`}>{account.last_name}, {account.first_name}</Link>
-                    </li>
-                  </ul>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <h1>Welcome</h1>
+        <Link to='/' className="nav-item">Home</Link>
+        <Link to='/account-list' className="nav-item">Account List</Link>
       </Fragment>
       <Switch>
-        <Route path="/:accountId" children={<Account />}/>
+        <Route exact path="/account-list">
+          <AccountList accounts={accounts}/>
+        </Route>
       </Switch>
     </Router>
     
@@ -60,7 +47,6 @@ const App = () => {
 };
 
 function Account() {
-  debugger;
   let { accountId } = useParams();
   return <h3>ID: {accountId} </h3>
 }
