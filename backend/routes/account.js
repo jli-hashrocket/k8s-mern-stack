@@ -7,7 +7,7 @@ router.get('/account-list', accountController.index);
 
 //Account routes
 router.get('/add-account', accountController.addAccount);
-router.post('/add-account', accountController.createAccount);
+router.post('/create-account', accountController.createAccount);
 router.get('/:_id', accountController.getAccount);
 router.get('/edit/:_id', accountController.editAccount);
 router.post('/update/:_id', accountController.updateAccount);

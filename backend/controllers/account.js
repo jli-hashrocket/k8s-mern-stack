@@ -51,13 +51,20 @@ exports.updateAccount = async (req, res) => {
 	}
 }
 
-exports.createAccount = (req, res) => {	
+exports.createAccount =  async (req, res) => {
 	const account = new Account(req.body);
-	account.save();
-	res.status(201).redirect('/');
+	await account.save();
+
+	try {
+		res.status(200);
+	} catch (error) {
+		console.log(error)
+	}
+	
 }
 
 exports.deleteAccount = (req, res) => {
+	console.log('delete')
 	const accountId = req.params._id;
 	try {
 		Account.findByIdAndDelete(accountId, function(err){
@@ -65,7 +72,8 @@ exports.deleteAccount = (req, res) => {
 				console.log(err);
 			} else {
 				console.log('Item deleted');
-				res.redirect('/');
+				res.status(302)
+				// res.redirect('/account-list');
 			}
 		});
 	} catch (error) {

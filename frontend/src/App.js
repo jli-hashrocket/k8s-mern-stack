@@ -3,10 +3,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useParams
-} from "../node_modules/react-router-dom";
-import AccountList from "./components/AccountList.js";
+  Link
+} from "react-router-dom";
+import AccountList from "./components/AccountList";
+import Account from "./components/Account";
+import AccountForm from "./components/AccountForm";
+
 
 const App = () => {
   useEffect(() => {
@@ -15,7 +17,6 @@ const App = () => {
       const data = await response.json();
 
       try {
-        console.log(data);
         setLoading(false);
         setAccounts(data);
       } catch (error) {
@@ -37,19 +38,20 @@ const App = () => {
         <Link to='/account-list' className="nav-item">Account List</Link>
       </Fragment>
       <Switch>
+        <Route path="/add-account" component={AccountForm} />
         <Route exact path="/account-list">
           <AccountList accounts={accounts}/>
         </Route>
+        <Route path="/:accountId">
+          <Account accounts={accounts}/>
+        </Route>
+        <Route path="/delete/:accountId" />
+
       </Switch>
     </Router>
     
   );
 };
-
-function Account() {
-  let { accountId } = useParams();
-  return <h3>ID: {accountId} </h3>
-}
 
 
 
