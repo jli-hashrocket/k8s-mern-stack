@@ -51,12 +51,13 @@ exports.updateAccount = async (req, res) => {
 	}
 }
 
-exports.createAccount =  async (req, res) => {
+exports.createAccount = (req, res) => {
 	const account = new Account(req.body);
-	await account.save();
+	account.save();
 
 	try {
-		res.status(200);
+		res.status(200)
+		res.json({account: account});
 	} catch (error) {
 		console.log(error)
 	}

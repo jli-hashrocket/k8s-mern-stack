@@ -30,6 +30,12 @@ const App = () => {
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const handleStateChange = (value) => {
+    let newAccounts = accounts;
+    newAccounts.push(value);
+    setAccounts(newAccounts);
+  }
+
   return (
     <Router>
       <Fragment>
@@ -38,7 +44,9 @@ const App = () => {
         <Link to='/account-list' className="nav-item">Account List</Link>
       </Fragment>
       <Switch>
-        <Route path="/add-account" component={AccountForm} />
+        <Route path="/add-account">
+          <AccountForm accounts={accounts} handleStateChange={handleStateChange} />
+        </Route>s
         <Route exact path="/account-list">
           <AccountList accounts={accounts}/>
         </Route>
