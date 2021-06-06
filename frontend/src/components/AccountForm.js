@@ -1,16 +1,31 @@
 import React from 'react';
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 
 class AccountForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      first_name: '',
-      last_name: '',
-      email: '',
-      redirect: null
-    }
+    
+    const accountId = this.props.match.params.accountId;
 
+    if(accountId){
+      const account = this.props.accounts.find(a => a._id === accountId);
+      this.state = {
+        id: account.id,
+        first_name: account.first_name ,
+        last_name: account.last_name,
+        email: account.email,
+        redirect: null
+      }
+      this.account = account;
+    } else {
+      this.state = {
+        first_name: '',
+        last_name: '',
+        email: '',
+        redirect: null
+      }
+    }
+    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -38,13 +53,16 @@ class AccountForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-     fetch('http://localhost:8080/create-account', {
+    const endPoint = this.account ? `update/${this.account._id}` : 'create-account';
+    const body = {first_name: this.state.first_name, last_name: this.state.last_name, email: this.state.email}
+
+    fetch(`http://localhost:8080/${endPoint}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(body)
     })
     .then(res => {
       const data = res.json();
@@ -70,7 +88,8 @@ class AccountForm extends React.Component {
     }
     return (
       <div>
-        <h1>Add Account</h1>
+        <h1>{ this.account ? 'Edit' : 'Add' } Account</h1>
+        
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>First Name</label>
@@ -86,7 +105,7 @@ class AccountForm extends React.Component {
           </div>
           <div>
             <Link to='/account-list'>Cancel</Link>
-            <button type="submit">Add Account</button>
+            <button type="submit">Save</button>
           </div>
         </form>
       </div>
@@ -96,4 +115,4 @@ class AccountForm extends React.Component {
   
 };
   
-export default AccountForm;
+export default withRouter(AccountForm);
