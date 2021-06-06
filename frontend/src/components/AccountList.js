@@ -14,7 +14,7 @@ const AccountList = ({accounts}) => (
               <li>
                 <Link to={`/${account._id}`}>
                   {account.last_name}, {account.first_name}
-                </Link>
+                </Link> | <Link to={`/edit/${account._id}`}>Edit</Link>
               </li>
             </ul>
           </div>
@@ -24,13 +24,4 @@ const AccountList = ({accounts}) => (
   
 );
   
-  
-
-AccountList.propTypes = {
-  accounts: PropTypes.arrayOf(PropTypes.shape({
-    first_name: PropTypes.string,
-    last_name: PropTypes.string,
-    email: PropTypes.string
-  }))
-};
 export default AccountList;

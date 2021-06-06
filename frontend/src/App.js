@@ -32,7 +32,13 @@ const App = () => {
 
   const handleStateChange = (value) => {
     let newAccounts = accounts;
-    newAccounts.push(value);
+    let updatedAccountIndex = newAccounts.findIndex((account) => account._id == value._id)
+    if(updatedAccountIndex !== null || updatedAccountIndex !== undefined){
+      newAccounts[updatedAccountIndex] = value
+    }else{
+      newAccounts.push(value);
+    }
+    
     setAccounts(newAccounts);
   }
 
@@ -46,7 +52,10 @@ const App = () => {
       <Switch>
         <Route path="/add-account">
           <AccountForm accounts={accounts} handleStateChange={handleStateChange} />
-        </Route>s
+        </Route>
+        <Route path="/edit/:accountId">
+          <AccountForm accounts={accounts} handleStateChange={handleStateChange} />
+        </Route>
         <Route exact path="/account-list">
           <AccountList accounts={accounts}/>
         </Route>

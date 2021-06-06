@@ -40,15 +40,19 @@ exports.editAccount = async (req, res) => {
     
 };
 
-exports.updateAccount = async (req, res) => {
+exports.updateAccount = (req, res) => {
 	const accountId = req.params._id
-	const account = await Account.updateOne({ _id: accountId }, req.body);
-
-	try {
-		res.status(201).redirect('/');
-	} catch (error) {
-		console.log(error);
-	}
+	Account.findById(accountId, function(err, doc) {
+		doc.first_name = req.body.first_name
+		doc.last_name = req.body.last_name
+		doc.email = req.body.email
+		doc.save()
+		try {
+			res.json({account: doc});
+		} catch (error) {
+			console.log(error);
+		}
+	});
 }
 
 exports.createAccount = (req, res) => {
@@ -56,7 +60,7 @@ exports.createAccount = (req, res) => {
 	account.save();
 
 	try {
-		res.status(200)
+		res.status(200);
 		res.json({account: account});
 	} catch (error) {
 		console.log(error)

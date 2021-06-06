@@ -5,22 +5,6 @@ const Account = ({accounts}) => {
   const account = accounts.find(a => a._id === accountId);
   let accountData;
 
-  // useEffect(() => {
-  //   const deleteAPI = async () => {
-  //     const response = await fetch(`http://localhost:8080/delete/${accountId}`);
-  //     const data = await response.json();
-
-  //     try {
-  //       console.log(data);
-  //       setLoading(false);
-  //       setAccounts(data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   deleteAPI();
-  // }, []);
-
   if (account) {
     accountData = (
       <div>
