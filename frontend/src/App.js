@@ -33,9 +33,9 @@ const App = () => {
   const handleStateChange = (value) => {
     let newAccounts = accounts;
     let updatedAccountIndex = newAccounts.findIndex((account) => account._id == value._id)
-    if(updatedAccountIndex !== null || updatedAccountIndex !== undefined){
+    if(updatedAccountIndex !== null && updatedAccountIndex !== undefined && updatedAccountIndex !== -1){
       newAccounts[updatedAccountIndex] = value
-    }else{
+    } else {
       newAccounts.push(value);
     }
     
