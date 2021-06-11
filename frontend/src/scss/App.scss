@@ -1,0 +1,15 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+.wrapper {
+  margin: 20px;
+
+  .content-body {
+    margin-top: 40px;
+  }
+
+  table {
+    td, th {
+      border: none;
+    }
+  }
+}

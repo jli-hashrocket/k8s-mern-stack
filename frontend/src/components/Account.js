@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Link, useParams, withRouter, Redirect} from "react-router-dom";
+import { Container, Form, Button } from 'react-bootstrap';
+import '../scss/Account.scss';
+
 
 const Account = ({accounts, handleStateChange}) => {
   const { accountId } = useParams();
@@ -41,26 +44,25 @@ const Account = ({accounts, handleStateChange}) => {
   if (account) {
     accountData = (
       <div>
+        <h4>{account.last_name}, {account.first_name}</h4>
         <p>
-          <b>Email: </b>{account.email}<br/>
           <b>First Name: </b>{account.first_name}<br/>
-          <b>Last Name: </b>{account.last_name}
+          <b>Last Name: </b>{account.last_name}<br/>
+          <b>Email: </b>{account.email}
         </p>
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <div>
             <input type="hidden" value={account._id} />
-            <Link to="/account-list">Back</Link>
-            <button>Delete</button>
+            <Link to="/account-list" className="btn btn-outline-secondary">Back</Link>
+            <Button variant="outline-primary">Delete</Button>
           </div>
-        </form>
+        </Form>
       </div>
     )
   }
 
   return (
-    <div>
-      {accountData}
-    </div>
+    <Container className="content-body">{accountData}</Container>
   )
   
 };

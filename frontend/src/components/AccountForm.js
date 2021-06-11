@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, Redirect, withRouter } from "react-router-dom";
+import { Container, Form, Button } from 'react-bootstrap';
+import '../scss/AccountForm.scss';
 
 class AccountForm extends React.Component {
   constructor(props) {
@@ -87,28 +89,26 @@ class AccountForm extends React.Component {
       return <Redirect to={this.state.redirect} />
     }
     return (
-      <div>
-        <h1>{ this.account ? 'Edit' : 'Add' } Account</h1>
+      <Container className="content-body">
+        <h4>{ this.account ? 'Edit' : 'Add' } Account</h4>
         
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>First Name</label>
-            <input type="text" name="first_name" onChange={this.handleChange} value={this.state.first_name} required />
-          </div>
-          <div>
-            <label>Last Name</label>
-            <input type="text" name="last_name" onChange={this.handleChange} value={this.state.last_name} required />
-          </div>
-          <div>
-            <label>Email</label>
-            <input type="text" name="email" onChange={this.handleChange} value={this.state.email} required />
-          </div>
-          <div>
-            <Link to='/account-list'>Cancel</Link>
-            <button type="submit">Save</button>
-          </div>
-        </form>
-      </div>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group controlId="firstName">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control type="text" name="first_name" onChange={this.handleChange} value={this.state.first_name} required />
+          </Form.Group>
+          <Form.Group controlId="lastName">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control type="text" type="text" name="last_name" onChange={this.handleChange} value={this.state.last_name} required />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="text" name="email" onChange={this.handleChange} value={this.state.email} required />
+          </Form.Group>
+          <Link to='/account-list' className="btn btn-outline-secondary">Cancel</Link>
+          <Button variant="outline-primary" type="submit">Save</Button>
+        </Form>
+      </Container>
     )
   }
   
