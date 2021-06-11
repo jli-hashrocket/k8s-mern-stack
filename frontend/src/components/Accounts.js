@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Container, Table } from 'react-bootstrap';
-import '../scss/AccountList.scss';
+import '../scss/Accounts.scss';
 
 
 
-const AccountList = ({accounts}) => (
+const Accounts = ({accounts}) => (
     <Container className="content-body">
-      <h4>Account List</h4>
+      <h4>Accounts</h4>
       <div>
         <Link to='/add-account' className="btn btn-outline-primary">Add Account</Link>
       </div>
@@ -40,4 +40,4 @@ const AccountList = ({accounts}) => (
   
 );
   
-export default AccountList;
+export default Accounts;

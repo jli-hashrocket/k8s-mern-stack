@@ -3,7 +3,7 @@ const accountController = require('../controllers/account');
 
 const router = express.Router();
 //Home routes
-router.get('/account-list', accountController.index);
+router.get('/accounts', accountController.index);
 
 //Account routes
 router.get('/add-account', accountController.addAccount);

@@ -31,7 +31,7 @@ const Account = ({accounts, handleStateChange}) => {
       }
       
       handleStateChange({ account: { _id: accountId}}, res.status)
-      setRedirect('/account-list');
+      setRedirect('/accounts');
     })
     .catch(err => {
       console.log('error')
@@ -53,8 +53,8 @@ const Account = ({accounts, handleStateChange}) => {
         <Form onSubmit={handleSubmit}>
           <div>
             <input type="hidden" value={account._id} />
-            <Link to="/account-list" className="btn btn-outline-secondary">Back</Link>
-            <Button variant="outline-primary">Delete</Button>
+            <Link to="/accounts" className="btn btn-outline-secondary">Back</Link>
+            <Button variant="outline-primary" type="submit">Delete</Button>
           </div>
         </Form>
       </div>

@@ -75,7 +75,7 @@ class AccountForm extends React.Component {
       }
       data.then(d => {
         this.props.handleStateChange(d.account)
-        this.setState({ redirect: '/account-list' });
+        this.setState({ redirect: '/accounts' });
       })
       
     })
@@ -105,7 +105,7 @@ class AccountForm extends React.Component {
             <Form.Label>Email</Form.Label>
             <Form.Control type="text" name="email" onChange={this.handleChange} value={this.state.email} required />
           </Form.Group>
-          <Link to='/account-list' className="btn btn-outline-secondary">Cancel</Link>
+          <Link to='/accounts' className="btn btn-outline-secondary">Cancel</Link>
           <Button variant="outline-primary" type="submit">Save</Button>
         </Form>
       </Container>
