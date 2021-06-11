@@ -8,8 +8,9 @@ import {
 import AccountList from "./components/AccountList";
 import Account from "./components/Account";
 import AccountForm from "./components/AccountForm";
+import Index from "./components/Index";
 import './scss/App.scss';
-import { Container } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 const App = () => {
   useEffect(() => {
@@ -51,13 +52,20 @@ const App = () => {
   return (
     <Router>
       <Container fluid className="wrapper">
-        <Fragment>
-          <Container>
-            <h1>Submissions Manager</h1>
-            <Link to='/' className="nav-item">Home</Link>
-            <Link to='/account-list' className="nav-item">Account List</Link>
-          </Container>
-        </Fragment>
+        <Container>
+          <Fragment>
+            <Navbar className="nav-container">
+              <Navbar.Brand href="/">Submissions Manager</Navbar.Brand>
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                  <Link to='/' className="nav-item nav-link">Home</Link>
+                  <Link to='/account-list' className="nav-item nav-link">Account List</Link>
+                  <Link to='/submissions' className="nav-item nav-link">Submissions</Link>
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
+          </Fragment>
+        </Container>
         <Switch>
           <Route path="/add-account">
             <AccountForm accounts={accounts} handleStateChange={handleStateChange} />
@@ -72,7 +80,12 @@ const App = () => {
             <Account accounts={accounts} handleStateChange={handleStateChange}/>
           </Route>
           <Route path="/delete/:accountId" />
-
+          <Route path="/submissions">
+            
+          </Route>
+          <Route path="/">
+            <Index />
+          </Route>
         </Switch>
       </Container>
     </Router>
