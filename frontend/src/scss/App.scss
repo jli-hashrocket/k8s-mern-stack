@@ -1,15 +1,23 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 .wrapper {
-  margin: 20px;
+  margin: 1.25rem;
 
-  .content-body {
-    margin-top: 40px;
+  .nav-container {
+    margin-bottom: 2.5rem;
   }
 
   table {
     td, th {
       border: none;
     }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  h1,h2,h3,h4 {
+    margin-bottom: 2rem;
   }
 }
