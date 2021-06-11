@@ -48,7 +48,7 @@ exports.updateAccount = (req, res) => {
 		doc.email = req.body.email
 		doc.save()
 		try {
-			res.json({account: doc});
+			res.status(200).json({account: doc});
 		} catch (error) {
 			console.log(error);
 		}
@@ -60,8 +60,7 @@ exports.createAccount = (req, res) => {
 	account.save();
 
 	try {
-		res.status(200);
-		res.json({account: account});
+		res.status(200).json({account: account});
 	} catch (error) {
 		console.log(error)
 	}
@@ -69,18 +68,14 @@ exports.createAccount = (req, res) => {
 }
 
 exports.deleteAccount = (req, res) => {
-	console.log('delete')
 	const accountId = req.params._id;
 	try {
 		Account.findByIdAndDelete(accountId, function(err){
 			if(err){
 				console.log(err);
-			} else {
-				console.log('Item deleted');
-				res.status(302)
-				// res.redirect('/account-list');
-			}
+			} 
 		});
+		res.status(204).json({account: accountId});
 	} catch (error) {
 		console.log(error);
 	}
