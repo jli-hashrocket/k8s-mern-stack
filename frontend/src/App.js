@@ -8,7 +8,8 @@ import {
 import AccountList from "./components/AccountList";
 import Account from "./components/Account";
 import AccountForm from "./components/AccountForm";
-
+import './scss/App.scss';
+import { Container } from 'react-bootstrap';
 
 const App = () => {
   useEffect(() => {
@@ -49,27 +50,31 @@ const App = () => {
 
   return (
     <Router>
-      <Fragment>
-        <h1>Welcome</h1>
-        <Link to='/' className="nav-item">Home</Link>
-        <Link to='/account-list' className="nav-item">Account List</Link>
-      </Fragment>
-      <Switch>
-        <Route path="/add-account">
-          <AccountForm accounts={accounts} handleStateChange={handleStateChange} />
-        </Route>
-        <Route path="/edit/:accountId">
-          <AccountForm accounts={accounts} handleStateChange={handleStateChange} />
-        </Route>
-        <Route exact path="/account-list">
-          <AccountList accounts={accounts}/>
-        </Route>
-        <Route path="/:accountId">
-          <Account accounts={accounts} handleStateChange={handleStateChange}/>
-        </Route>
-        <Route path="/delete/:accountId" />
+      <Container fluid className="wrapper">
+        <Fragment>
+          <Container>
+            <h1>Submissions Manager</h1>
+            <Link to='/' className="nav-item">Home</Link>
+            <Link to='/account-list' className="nav-item">Account List</Link>
+          </Container>
+        </Fragment>
+        <Switch>
+          <Route path="/add-account">
+            <AccountForm accounts={accounts} handleStateChange={handleStateChange} />
+          </Route>
+          <Route path="/edit/:accountId">
+            <AccountForm accounts={accounts} handleStateChange={handleStateChange} />
+          </Route>
+          <Route exact path="/account-list">
+            <AccountList accounts={accounts}/>
+          </Route>
+          <Route path="/:accountId">
+            <Account accounts={accounts} handleStateChange={handleStateChange}/>
+          </Route>
+          <Route path="/delete/:accountId" />
 
-      </Switch>
+        </Switch>
+      </Container>
     </Router>
     
   );
