@@ -5,7 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import AccountList from "./components/AccountList";
+import Accounts from "./components/Accounts";
 import Account from "./components/Account";
 import AccountForm from "./components/AccountForm";
 import Index from "./components/Index";
@@ -15,7 +15,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 const App = () => {
   useEffect(() => {
     const getAPI = async () => {
-      const response = await fetch('http://localhost:8080/account-list');
+      const response = await fetch('http://localhost:8080/accounts');
       const data = await response.json();
 
       try {
@@ -59,7 +59,7 @@ const App = () => {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                   <Link to='/' className="nav-item nav-link">Home</Link>
-                  <Link to='/account-list' className="nav-item nav-link">Account List</Link>
+                  <Link to='/accounts' className="nav-item nav-link">Accounts</Link>
                   <Link to='/submissions' className="nav-item nav-link">Submissions</Link>
                 </Nav>
               </Navbar.Collapse>
@@ -73,8 +73,8 @@ const App = () => {
           <Route path="/edit/:accountId">
             <AccountForm accounts={accounts} handleStateChange={handleStateChange} />
           </Route>
-          <Route exact path="/account-list">
-            <AccountList accounts={accounts}/>
+          <Route exact path="/accounts">
+            <Accounts accounts={accounts}/>
           </Route>
           <Route path="/:accountId">
             <Account accounts={accounts} handleStateChange={handleStateChange}/>
