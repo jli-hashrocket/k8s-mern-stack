@@ -30,14 +30,19 @@ const App = () => {
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const handleStateChange = (value) => {
+  const handleStateChange = (value, status=null) => {
     let newAccounts = accounts;
     let updatedAccountIndex = newAccounts.findIndex((account) => account._id == value._id)
-    if(updatedAccountIndex !== null && updatedAccountIndex !== undefined && updatedAccountIndex !== -1){
-      newAccounts[updatedAccountIndex] = value
+    if ( status === 204 ) {
+      newAccounts.splice(updatedAccountIndex, 1);
     } else {
-      newAccounts.push(value);
+      if(updatedAccountIndex !== null && updatedAccountIndex !== undefined && updatedAccountIndex !== -1){
+        newAccounts[updatedAccountIndex] = value
+      } else {
+        newAccounts.push(value);
+      }
     }
+    
     
     setAccounts(newAccounts);
   }
@@ -60,7 +65,7 @@ const App = () => {
           <AccountList accounts={accounts}/>
         </Route>
         <Route path="/:accountId">
-          <Account accounts={accounts}/>
+          <Account accounts={accounts} handleStateChange={handleStateChange}/>
         </Route>
         <Route path="/delete/:accountId" />
 
