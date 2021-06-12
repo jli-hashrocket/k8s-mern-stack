@@ -5,12 +5,14 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import './scss/App.scss';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import Accounts from "./components/Accounts";
 import Account from "./components/Account";
 import AccountForm from "./components/AccountForm";
 import Index from "./components/Index";
-import './scss/App.scss';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import Submissions from './components/Submissions';
+
 
 const App = () => {
   useEffect(() => {
@@ -31,6 +33,7 @@ const App = () => {
 
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
+
 
   const handleStateChange = (value, status=null) => {
     let newAccounts = accounts;
@@ -67,6 +70,9 @@ const App = () => {
           </Fragment>
         </Container>
         <Switch>
+          <Route path="/submissions">
+            <Submissions accounts={accounts} />
+          </Route>
           <Route path="/add-account">
             <AccountForm accounts={accounts} handleStateChange={handleStateChange} />
           </Route>
@@ -80,9 +86,6 @@ const App = () => {
             <Account accounts={accounts} handleStateChange={handleStateChange}/>
           </Route>
           <Route path="/delete/:accountId" />
-          <Route path="/submissions">
-            
-          </Route>
           <Route path="/">
             <Index />
           </Route>

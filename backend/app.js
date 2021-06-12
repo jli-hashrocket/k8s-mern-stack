@@ -3,10 +3,13 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
 const accountRoute = require('./routes/account');
-require('dotenv').config();
+const submissionRoute = require('./routes/submission');
 const morgan = require('morgan');
 const app = express();
 const bodyParser = require('body-parser');
+const parser = require('xml2json');
+
+require('dotenv').config();
 
 app.use(cors());
 
@@ -22,6 +25,7 @@ app.use('/', accountRoute);
 
 const port = process.env.PORT || 8080;
 console.log(process.env)
+
 mongoose
 	.connect(process.env.DB_HOST, {
 		useCreateIndex: true,
