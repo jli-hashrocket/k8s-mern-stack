@@ -7,7 +7,14 @@ class Submissions extends React.Component {
     super(props)
   }
 
-  handleChange = (event) => {
+  handleChange = async (event) => {
+    const accountId = event.target.value; 
+    if ( accountId ) {
+      const response = await fetch(`http://localhost:8080/accounts/${accountId}/submissions`);
+      const data = await response.json();
+      console.log(data);
+    }
+
   }
 
   render() {

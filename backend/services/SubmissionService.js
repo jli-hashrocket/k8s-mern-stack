@@ -1,11 +1,12 @@
 const parser = require('xml2json');
 
-const SubmissionService = (params) => {
+class SubmissionService {
+  constructor(url) {
+    this.url = url
+  }
 
-  const url = params.url;
-
-  const importData = (url) => {
-    fetch(url, {
+  importData() {
+    fetch(this.url, {
       method: 'GET',
       headers: {
         'Accept': 'application/xml',

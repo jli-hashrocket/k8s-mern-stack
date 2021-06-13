@@ -2,8 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
-const accountRoute = require('./routes/account');
-const submissionRoute = require('./routes/submission');
+const routes = require('./routes/routes');
 const morgan = require('morgan');
 const app = express();
 const bodyParser = require('body-parser');
@@ -21,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/static', express.static(path.join(`${__dirname}/public`)));
 
-app.use('/', accountRoute);
+app.use('/', routes);
 
 const port = process.env.PORT || 8080;
 console.log(process.env)
