@@ -3,14 +3,14 @@ const SubmissionService = require('../services/SubmissionService')
 
 exports.getAccountSubmissions = async (req, res) => {
   const accountId = req.params._id;
-  const params = { account_id: accountId, url: req.body.url }
 	const accountSubmissions = await Submission.find({ account_id: accountId });
 	
 	try {
+    
     if ( accountSubmissions.length !== 0 ) {
-      res.json(accountSubmissions);
+      res.json({submissions: accountSubmissions});
     } else {
-
+      res.json({submissions: null})
     }
 	} catch (error) {
 		console.log(error);
@@ -18,12 +18,14 @@ exports.getAccountSubmissions = async (req, res) => {
     
 };
 
-exports.importSubmissions = async (req, res) => {
+exports.importSubmissions = (req, res) => {
+  console.log(req);
   const url = req.body.url;
   const submissionService = new SubmissionService(url)
-  const accountSubmissions = await submissionService.importData();
+  const accountSubmissions = submissionService.importData();
 
   try {
+    console.log(accountSubmissions);
     res.json(accountSubmissions);
   } catch (error) {
     console.log(error);
