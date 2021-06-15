@@ -8,7 +8,8 @@ class Submissions extends React.Component {
 
     this.state = {
       showImport: null,
-      showSubmissions: null
+      showSubmissions: null,
+      selectedAccount: null
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,9 +24,9 @@ class Submissions extends React.Component {
       
       try {
         if (data.submissions === null ) {
-          this.setState({ showImport: false, showSubmissions: true})
+          this.setState({ showImport: false, showSubmissions: true, selectedAccount: accountId })
         } else {
-          this.setState({ showImport: true, showSubmissions: false})
+          this.setState({ showImport: true, showSubmissions: false, selectedAccount: accountId })
         }
       } catch (error) {
         console.log(error);
@@ -50,8 +51,8 @@ class Submissions extends React.Component {
         </div> 
         { this.state.showImport === false &&
           <div>
-            <label>There is no submissions for this account. Would you like to import?</label><br/>
-            <Button variant="outline-primary" type="submit">Import Submissions</Button>
+            <label>There is no submissions for this account. Please import your data below.</label><br/>
+            <Button variant="outline-primary" type="submit">Import</Button>
           </div>
         }
       </Container>      
