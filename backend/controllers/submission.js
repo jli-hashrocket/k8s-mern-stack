@@ -18,14 +18,12 @@ exports.getAccountSubmissions = async (req, res) => {
     
 };
 
-exports.importSubmissions = (req, res) => {
-  console.log(req);
-  const url = req.body.url;
-  const submissionService = new SubmissionService(url)
-  const accountSubmissions = submissionService.importData();
+exports.importSubmissions = async (req, res) => {
+  const url = req.body.api_url;
+  const submissionService = await new SubmissionService(url)
+  const accountSubmissions = await submissionService.importData();
 
   try {
-    console.log(accountSubmissions);
     res.json(accountSubmissions);
   } catch (error) {
     console.log(error);

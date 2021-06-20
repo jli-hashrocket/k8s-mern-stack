@@ -16,7 +16,7 @@ router.post('/delete/:_id', accountController.deleteAccount)
 
 //Submission routes
 router.get('/accounts/:_id/submissions', submissionController.getAccountSubmissions);
-router.get('/accounts/:_id/import-submissions', submissionController.importSubmissions);
+router.post('/accounts/:_id/import-submissions', submissionController.importSubmissions);
 
 
 module.exports = router;
