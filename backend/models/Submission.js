@@ -9,7 +9,10 @@ const SubmissionSchema = mongoose.Schema({
 	form_id: {
 		type: Number
 	},
-	email: {
+	user_name: {
+		type: String
+	},
+	submission_status: {
 		type: String
 	},
   date: {

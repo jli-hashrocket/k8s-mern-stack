@@ -20,7 +20,8 @@ exports.getAccountSubmissions = async (req, res) => {
 
 exports.importSubmissions = async (req, res) => {
   const url = req.body.api_url;
-  const submissionService = await new SubmissionService(url)
+  const accountId = req.params._id
+  const submissionService = await new SubmissionService(accountId, url)
   const accountSubmissions = await submissionService.importData();
 
   try {
