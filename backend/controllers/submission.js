@@ -22,11 +22,12 @@ exports.importSubmissions = async (req, res) => {
   const url = req.body.api_url;
   const accountId = req.params._id
   const submissionService = await new SubmissionService(accountId, url)
-  const accountSubmissions = await submissionService.importData();
+  const importedSubs = await submissionService.importData();
+  const subRecords = await submissionService.persistSubmissions(importedSubs)
 
   try {
-    res.json(accountSubmissions);
-  } catch (error) {
-    console.log(error);
+    res.json({submissions: subRecords});
+  } catch (err) {
+    console.log(err);
   }
 }

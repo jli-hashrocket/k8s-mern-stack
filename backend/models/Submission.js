@@ -9,7 +9,7 @@ const SubmissionSchema = mongoose.Schema({
 	form_id: {
 		type: Number
 	},
-	user_name: {
+	username: {
 		type: String
 	},
 	submission_status: {

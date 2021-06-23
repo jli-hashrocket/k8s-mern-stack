@@ -11,18 +11,22 @@ class SubmissionService {
 
   persistSubmissions = (data) => {
     const submissions = data.CanvasResult.Submissions.Submission
+    const savedSubs = []
+    console.log
     submissions.forEach(s => {
       const submission = new Submission({ 
         account_id: this.accountId, 
         submission_id: parseInt(s.Id),
         form_id: parseInt(s.Form.Id),
         date: s.Date, 
-        email: s.UserName,
+        username: s.UserName,
         submission_status: s.SubmissionStatus
       });
       submission.save();
-    
-    }); 
+      savedSubs.push(submission)
+    });
+    console.log(savedSubs)
+    return savedSubs
   }
 
   importData = async () => {
@@ -31,7 +35,7 @@ class SubmissionService {
     const jsonData = await parser.toJson(data)
     
     try {
-      this.persistSubmissions(JSON.parse(jsonData))
+      return JSON.parse(jsonData);
     } catch (error) {
       console.log(error);
     }

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, useParams, withRouter, Redirect} from "react-router-dom";
-import { Button, Form, Container } from 'react-bootstrap';
+import { Button, Form, Container, Table } from 'react-bootstrap';
 import '../scss/Submissions.scss';
 
 
@@ -12,6 +11,7 @@ class Submissions extends React.Component {
       showImport: null,
       showSubmissions: null,
       selectedAccount: null,
+      submissions: [],
       apiUrl: ''
     }
 
@@ -64,7 +64,9 @@ class Submissions extends React.Component {
           return Promise.reject(error);
       }
       data.then(d => {
-       console.log(d);
+        if ( d.submissions ) {
+          this.setState({ submissions: d.submissions, showImport: true })
+        }
       })
       
     })
@@ -105,6 +107,31 @@ class Submissions extends React.Component {
               <Button variant="outline-primary" type="submit">Import</Button>
             </Form>
           </div>
+        }
+        { this.state.showImport === true &&
+          <Table responsive striped bordered hover className="submissions-list">
+            <thead>
+              <tr>
+                <td>Username</td>
+                <td>Submission Id</td>
+                <td>Form Id</td>
+                <td>Submission Status</td>
+                <td>Created Date</td>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.submissions.map((submission) => (
+                <tr key={submission._id}>
+                  <td>{submission.username}</td>
+                  <td>{submission.submission_id}</td>
+                  <td>{submission.form_id}</td>
+                  <td>{submission.submission_status}</td>
+                  <td>{submission.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          
         }
         
       </Container>      
