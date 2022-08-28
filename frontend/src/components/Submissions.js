@@ -9,7 +9,6 @@ class Submissions extends React.Component {
 
     this.state = {
       showImport: null,
-      showSubmissions: null,
       selectedAccount: null,
       submissions: [],
       apiUrl: ''
@@ -29,9 +28,9 @@ class Submissions extends React.Component {
       
       try {
         if (data.submissions === null ) {
-          this.setState({ showImport: false, showSubmissions: true, selectedAccount: accountId, apiUrl: '' })
+          this.setState({ showImport: false, selectedAccount: accountId, apiUrl: '' })
         } else {
-          this.setState({ showImport: true, showSubmissions: false, selectedAccount: accountId, apiUrl: '' })
+          this.setState({ showImport: true, selectedAccount: accountId, apiUrl: '', submissions: data.submissions })
         }
       } catch (error) {
         console.log(error);

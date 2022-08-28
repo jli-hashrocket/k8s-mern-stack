@@ -4,7 +4,7 @@ const SubmissionService = require('../services/SubmissionService')
 exports.getAccountSubmissions = async (req, res) => {
   const accountId = req.params._id;
 	const accountSubmissions = await Submission.find({ account_id: accountId });
-	
+	console.log(accountSubmissions);
 	try {
     
     if ( accountSubmissions.length !== 0 ) {
