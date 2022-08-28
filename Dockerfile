@@ -4,8 +4,9 @@ WORKDIR ./mern-stack
 
 COPY . .
 
-RUN npm install -g npm
+RUN npm install
 
 EXPOSE 8080
 
+CMD ["cd", "backend"]
 CMD ["npm", "run dev"]
