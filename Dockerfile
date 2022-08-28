@@ -8,5 +8,4 @@ RUN npm install
 
 EXPOSE 8080
 
-CMD ["cd", "backend"]
-CMD ["npm", "run dev"]
+CMD cd backend && npm run dev
