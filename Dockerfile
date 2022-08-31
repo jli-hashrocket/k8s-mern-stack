@@ -4,8 +4,6 @@ WORKDIR ./mern-stack
 
 COPY . .
 
-RUN npm install
+RUN cd backend && npm install && cd ../frontend && npm install
 
-EXPOSE 8080
-
-CMD cd backend && npm run dev
+CMD cd backend && npm run servers
