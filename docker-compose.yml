@@ -9,6 +9,7 @@ services:
       - ./:/code
     image: jeffli1981/mern-stack_node
   mongo:
+    restart: always
     image: mongo
     ports:
       - 27017:27017
