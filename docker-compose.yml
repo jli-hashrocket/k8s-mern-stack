@@ -7,6 +7,7 @@ services:
       - 80:3000
     volumes:
       - ./:/code
+    image: jeffli1981/mern-stack_node
   mongo:
     image: mongo
     ports:
