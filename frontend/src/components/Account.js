@@ -14,7 +14,7 @@ const Account = ({accounts, handleStateChange}) => {
     event.preventDefault();
     const body = { account: { _id: accountId }};
 
-    fetch(`http://localhost:8080/delete/${account._id}`, {
+    fetch(`http://localhost/delete/${account._id}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
