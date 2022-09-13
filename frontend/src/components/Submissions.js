@@ -23,7 +23,7 @@ class Submissions extends React.Component {
     const accountId = event.target.value; 
 
     if ( accountId !== "" ) {
-      const response =  await fetch(`http://localhost/accounts/${accountId}/submissions`);
+      const response =  await fetch(`http://localhost:8080/accounts/${accountId}/submissions`);
       const data = await response.json();
       
       try {
@@ -47,7 +47,7 @@ class Submissions extends React.Component {
     e.preventDefault();
     const body = { api_url: state.apiUrl }
 
-    fetch(`http://localhost/accounts/${state.selectedAccount}/import-submissions`, {
+    fetch(`http://localhost:8080/accounts/${state.selectedAccount}/import-submissions`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

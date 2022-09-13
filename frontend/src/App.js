@@ -17,7 +17,7 @@ import Submissions from './components/Submissions';
 const App = () => {
   useEffect(() => {
     const getAPI = async () => {
-      const response = await fetch('http://localhost/accounts');
+      const response = await fetch('http://localhost:8080/accounts');
       const data = await response.json();
 
       try {

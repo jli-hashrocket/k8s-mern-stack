@@ -58,7 +58,7 @@ class AccountForm extends React.Component {
     const endPoint = this.account ? `update/${this.account._id}` : 'create-account';
     const body = {first_name: this.state.first_name, last_name: this.state.last_name, email: this.state.email}
 
-    fetch(`http://localhost/${endPoint}`, {
+    fetch(`http://localhost:8080/${endPoint}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

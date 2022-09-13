@@ -23,8 +23,7 @@ app.use('/static', express.static(path.join(`${__dirname}/public`)));
 app.use('/', routes);
 
 const port = process.env.PORT || 8080;
-console.log(process.env)
-
+console.log("DB HOST: " + process.env.DB_HOST)
 mongoose
 	.connect(process.env.DB_HOST, {
 		useCreateIndex: true,
