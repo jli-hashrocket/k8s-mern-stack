@@ -1,20 +1,31 @@
 version: '3.3'
 services:
-  node:
-    restart: always
+  client:
+    image: jeffli1981/mern-stack-client
+    stdin_open: true
     build: .
     ports:
-      - "8080"
-      - "3000"
-    volumes:
-      - ./:/code
-    image: jeffli1981/mern-stack_node
+      - "3001:3001"
+    # networks:
+    #   - mern-stack
+  server:
+    image: jeffli1981/mern-stack-server
+    build: .
+    ports: 
+      - "8080:8080"
+    # networks:
+    #   - mern-stack
+    depends_on:
+      - mongo
   mongo:
-    restart: always
     image: mongo
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
       - mongodb:/data/db
 volumes:
- mongodb:
+  mongodb:
+
+# networks:
+#   mern-stack:
+#     driver: bridge
