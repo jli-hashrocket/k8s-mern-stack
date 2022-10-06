@@ -12,7 +12,7 @@ services:
     image: jeffli1981/mern-stack-server
     build: .
     ports: 
-      - "8080:8080"
+      - "80:8080"
     # networks:
     #   - mern-stack
     depends_on:
