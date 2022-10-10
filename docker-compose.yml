@@ -1,31 +1,50 @@
 version: '3.3'
 services:
-  client:
-    image: jeffli1981/mern-stack-client
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    image: jeffli1981/mern-stack-frontend
     stdin_open: true
-    build: .
     ports:
       - "3001:3001"
-    # networks:
-    #   - mern-stack
-  server:
-    image: jeffli1981/mern-stack-server
-    build: .
+    container_name: mern-frontend
+    networks:
+      - mern-stack-net
+    volumes:
+      - ./frontend/src:/usr/mern-stack/src
+      - ./frontend/public:/usr/mern-stack/public
+    depends_on:
+      - backend
+    tty: true
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    image: jeffli1981/mern-stack-backend
+    container_name: mern-backend
     ports: 
-      - "80:8080"
-    # networks:
-    #   - mern-stack
+      - "8080:8080"
+    networks:
+      - mern-stack-net
+    volumes:
+      - ./backend/src:/usr/mern-stack/src
     depends_on:
       - mongo
   mongo:
     image: mongo
+    container_name: mongo-db
+    networks:
+      - mern-stack-net
     ports:
       - "27017:27017"
     volumes:
       - mongodb:/data/db
+
 volumes:
   mongodb:
+    driver: local
 
-# networks:
-#   mern-stack:
-#     driver: bridge
+networks:
+  mern-stack-net:
+    driver: bridge

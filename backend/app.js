@@ -7,7 +7,8 @@ const morgan = require('morgan');
 const app = express();
 const bodyParser = require('body-parser');
 const parser = require('xml2json');
-
+const version = process.version  
+console.log("Version: " + version);
 require('dotenv').config();
 
 app.use(cors());

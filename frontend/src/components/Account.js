@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { React, useState } from 'react';
 import { Link, useParams, withRouter, Redirect} from "react-router-dom";
 import { Container, Form, Button } from 'react-bootstrap';
 import '../scss/Account.scss';
@@ -14,7 +14,7 @@ const Account = ({accounts, handleStateChange}) => {
     event.preventDefault();
     const body = { account: { _id: accountId }};
 
-    fetch(`http://localhost:8080/delete/${account._id}`, {
+    fetch(`/delete/${account._id}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
