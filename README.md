@@ -1,5 +1,12 @@
 This is a Single Page Application that is primarily for learning the MERN stack and Docker.
 
 ## Available Scripts
+Deploy via Kubernetes
+- kubectl apply -f k8s
 
-git clone this repo and in the root, run  'docker compose up'
+Deploy via Docker
+- create .env file in /backend
+    - set DB_HOST = 'mongodb://mongo-service:27017/submission-manager
+    - set DB_USER = root
+    - set DB_PASSWORD = root
+- run 'docker compose up'
