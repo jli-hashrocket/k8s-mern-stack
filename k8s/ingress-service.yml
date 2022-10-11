@@ -14,13 +14,7 @@ spec:
         path: /?(.*)
         backend:
           service:
-            name: mern-stack-client-service
+            name: mern-stack-frontend-service
             port: 
               number: 3001
-      - pathType: Prefix
-        path: /create-account
-        backend:
-          service:
-            name: mern-stack-server-service
-            port: 
-              number: 8080
+      

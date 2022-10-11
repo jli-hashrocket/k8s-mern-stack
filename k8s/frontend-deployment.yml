@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mern-stack-client
+  name: mern-stack-frontend
 spec:
   selector:
     matchLabels:
@@ -13,8 +13,8 @@ spec:
         component: frontend
     spec:
       containers: 
-      - name: mern-stack-client
-        image: "jeffli1981/mern-stack-client"
+      - name: mern-stack-frontend
+        image: "jeffli1981/mern-stack-frontend"
         resources:
           limits:
             memory: "512Mi"
@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mern-stack-client-service
+  name: mern-stack-frontend-service
 spec:
   type: ClusterIP
   selector:
