@@ -24,7 +24,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://mern-backend:8080",
+  "proxy": "http://mern-stack-backend-service:8080",
   "browserslist": {
     "production": [
       ">0.2%",

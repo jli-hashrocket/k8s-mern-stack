@@ -39,7 +39,8 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    component: frontend
+    component: mongo
   ports:
   - port: 27017
     targetPort: 27017
+    protocol: TCP
