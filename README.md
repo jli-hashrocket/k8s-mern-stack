@@ -1,4 +1,4 @@
-This is a Single Page Application that is primarily for learning the MERN stack and Docker.
+This is a Single Page Application that is primarily for learning MERN/Docker/Kubernetes.
 
 ## Available Scripts
 Deploy via Kubernetes
